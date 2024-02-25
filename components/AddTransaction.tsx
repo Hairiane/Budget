@@ -48,9 +48,9 @@ export const AddTransaction = ({
 
     // @ts-ignore
     await insertTransaction({
-      amount: Number(amount),
+      amount: Number(amount.split(",").join(".")),
       description,
-      categori_id: categoryId,
+      category_id: categoryId,
       date: new Date().getTime() / 1000,
       type: category as "Expense" | "Income",
     });
@@ -72,9 +72,7 @@ export const AddTransaction = ({
               style={{fontSize: 32, marginBottom: 15, fontWeight: "bold"}}
               keyboardType="numeric"
               onChangeText={text => {
-                // Remove any non-numeric characters before setting the state
-                const numericValue = text.replace(/[^0-9.]/g, "");
-                setAmount(numericValue);
+                setAmount(text);
               }}
             />
             <TextInput

@@ -33,8 +33,6 @@ export const Home = () => {
       `SELECT * FROM Categories;`,
     );
 
-    console.log(categoriesResult);
-
     setCategories(categoriesResult);
 
     const now = new Date();
@@ -72,7 +70,7 @@ export const Home = () => {
         INSERT INTO Transactions (category_id, amount, date, description, type) VALUES (?, ?, ?, ?, ?);
       `,
         [
-          transaction.categori_id,
+          transaction.category_id,
           transaction.amount,
           transaction.date,
           transaction.description,
@@ -95,9 +93,20 @@ export const Home = () => {
           totalExpenses={transactionsByMonth.totalExpenses}
           totalIncome={transactionsByMonth.totalIncome}
         />
-        {transactions.map((item, index) => (
-          <ListItem {...item} categoryInfo={categories[index]} key={item.id} />
-        ))}
+        {transactions.map(item => {
+          const categoryForCurrentItem = categories.find(
+            category => category.id === item.category_id,
+          );
+          console.log(categories, item.category_id);
+          return (
+            <ListItem
+              {...item}
+              categoryInfo={categoryForCurrentItem}
+              key={item.id}
+              deleteTransaction={deleteTransaction}
+            />
+          );
+        })}
       </View>
     </ScrollView>
   );

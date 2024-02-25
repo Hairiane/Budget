@@ -2,27 +2,35 @@ import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {Category, Transaction} from "./types";
 import {AutoSizeText, ResizeTextMode} from "react-native-auto-size-text";
-import {categoryColors, categoryEmojies, localeRu} from "./constant";
+import {categoryColors, categoryEmojies} from "./constant";
 import {AntDesign} from "@expo/vector-icons";
 
 interface ListItemProps extends Transaction {
   tramsaction?: Transaction;
   categoryInfo?: Category | undefined;
+  deleteTransaction?(id: number): Promise<void>;
 }
 
 export const ListItem: React.FC<ListItemProps> = ({
   amount,
-  categori_id,
+  category_id,
   date,
   description,
   id,
   type,
   categoryInfo,
+  deleteTransaction,
 }) => {
+  // console.log(categoryInfo);
+
   const iconName = type === "Expense" ? "minuscircle" : "pluscircle";
   const color = type === "Expense" ? "red" : "green";
   const categoryColor = categoryColors[categoryInfo?.name ?? "Default"];
   const emoji = categoryEmojies[categoryInfo?.name ?? "Default"];
+
+  const handleDelete = async (id: number) => {
+    await deleteTransaction(id);
+  };
 
   return (
     <View
@@ -47,6 +55,13 @@ export const ListItem: React.FC<ListItemProps> = ({
         />
       </View>
       <TransactionInfo date={date} description={description} id={id} />
+      <AntDesign
+        name="minuscircle"
+        size={35}
+        color="red"
+        onPress={() => handleDelete(id)}
+        style={{position: "absolute", left: 280, top: 50}}
+      />
     </View>
   );
 };
@@ -63,9 +78,13 @@ const TransactionInfo = ({
   return (
     <View style={{flexGrow: 1, gap: 6, flexShrink: 1}}>
       <Text style={{fontSize: 16, fontWeight: "bold"}}>{description}</Text>
-      <Text>Transaction number {id}</Text>
+      <Text>Номер транзакции {id}</Text>
       <Text style={{fontSize: 12, color: "gray"}}>
-        {new Date(date * 1000).toDateString()}
+        {new Date(date * 1000).toLocaleString("ru", {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        })}
       </Text>
     </View>
   );
@@ -80,6 +99,8 @@ const CategoryItem = ({
   categoryInfo: Category | undefined;
   emoji: string;
 }) => {
+  // console.log(categoryColor, categoryInfo, emoji);
+
   return (
     <View
       style={[
@@ -88,7 +109,7 @@ const CategoryItem = ({
       ]}
     >
       <Text style={styles.categoryText}>
-        {emoji} {localeRu[categoryInfo?.name]}
+        {emoji} {categoryInfo?.name}
       </Text>
     </View>
   );
