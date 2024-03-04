@@ -97,7 +97,6 @@ export const Home = () => {
           const categoryForCurrentItem = categories.find(
             category => category.id === item.category_id,
           );
-          console.log(categories, item.category_id);
           return (
             <ListItem
               {...item}

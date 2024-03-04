@@ -13,7 +13,6 @@ interface ListItemProps extends Transaction {
 
 export const ListItem: React.FC<ListItemProps> = ({
   amount,
-  category_id,
   date,
   description,
   id,
@@ -21,8 +20,6 @@ export const ListItem: React.FC<ListItemProps> = ({
   categoryInfo,
   deleteTransaction,
 }) => {
-  // console.log(categoryInfo);
-
   const iconName = type === "Expense" ? "minuscircle" : "pluscircle";
   const color = type === "Expense" ? "red" : "green";
   const categoryColor = categoryColors[categoryInfo?.name ?? "Default"];
@@ -99,8 +96,6 @@ const CategoryItem = ({
   categoryInfo: Category | undefined;
   emoji: string;
 }) => {
-  // console.log(categoryColor, categoryInfo, emoji);
-
   return (
     <View
       style={[

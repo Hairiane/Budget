@@ -68,7 +68,7 @@ export const AddTransaction = ({
         <View>
           <Card>
             <TextInput
-              placeholder="$Amount"
+              placeholder="$Сумма"
               style={{fontSize: 32, marginBottom: 15, fontWeight: "bold"}}
               keyboardType="numeric"
               onChangeText={text => {
@@ -76,13 +76,13 @@ export const AddTransaction = ({
               }}
             />
             <TextInput
-              placeholder="Description"
+              placeholder="Описание"
               style={{marginBottom: 15}}
               onChangeText={setDescription}
             />
-            <Text style={{marginBottom: 6}}>Select a entry type</Text>
+            <Text style={{marginBottom: 6}}>Выберите тип транзакции</Text>
             <SegmentedControl
-              values={["Expense", "Income"]}
+              values={["Исходящие", "Входящие"]}
               style={{marginBottom: 15}}
               selectedIndex={0}
               onChange={event => {
@@ -173,7 +173,6 @@ const AddButton = ({
         height: 40,
         flexDirection: "row",
         alignItems: "center",
-
         justifyContent: "center",
         backgroundColor: "#007BFF20",
         borderRadius: 15,

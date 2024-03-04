@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 15,
     paddingBottom: 7,
-    // Add other container styles as necessary
   },
   periodTitle: {
     fontSize: 20,
@@ -60,5 +59,4 @@ const styles = StyleSheet.create({
     color: "#333",
     marginBottom: 10,
   },
-  // Removed moneyText style since we're now generating it dynamically
 });
