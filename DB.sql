@@ -1,5 +1,5 @@
 -- 1. create DB
-sqlite3 mySQLiteDB.db
+sqlite3 DB.db
 
 -- 2. create tables
 CREATE TABLE IF NOT EXISTS Categories (

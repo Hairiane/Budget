@@ -82,7 +82,7 @@ export const Home = () => {
   }
 
   return (
-    <ScrollView contentContainerStyle={{padding: 15, paddingVertical: 130}}>
+    <ScrollView contentContainerStyle={{padding: 15, paddingVertical: 180}}>
       <View
         style={{
           gap: 15,

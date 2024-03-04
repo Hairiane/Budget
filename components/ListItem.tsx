@@ -60,7 +60,7 @@ export const ListItem: React.FC<ListItemProps> = ({
         size={35}
         color="red"
         onPress={() => handleDelete(id)}
-        style={{position: "absolute", left: 280, top: 50}}
+        style={{position: "absolute", left: 340, top: 50}}
       />
     </View>
   );
